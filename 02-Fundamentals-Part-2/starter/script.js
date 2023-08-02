@@ -24,7 +24,7 @@
 // const jusMix = fruitProcessor(2, 2);
 // console.log(jusMix)
 
-
+//
 // function describeCountry(country, population, capitalCity) {
 //     const countryData =
 //         `${country} has ${population} people and its capital is ${capitalCity}`
@@ -55,7 +55,7 @@
 // const age2 = calcAge2(1995);
 // console.log(age2)
 
-
+//
 // // assignement declaration :
 // function percentageOfWorld1(population) {
 //     return (population / 7900000000) * 100;
@@ -66,7 +66,7 @@
 
 // console.log(china, india, france)
 
-
+//
 // //assignement expression :
 // const percentageOfWorld2 = function (population) {
 //     return (population / 79000000000) * 100;
@@ -102,21 +102,21 @@
 // console.log(chinaPercentagePop);
 
 // COURSE 36 Functions calling others
-// function cutFruitPieces(fruit) {
-//     return fruit * 4
+// function cutFruitPieces (fruit) {
+//   return fruit * 4
 // }
 
 // const fruitProcessor = function (pommes, oranges) {
+//   const pommesPieces = cutFruitPieces(pommes)
+//   const orangesPieces = cutFruitPieces(oranges)// ici on appelle la fonction du dessus dans la seconde fonction.
 
-//     const pommesPieces = cutFruitPieces(pommes);
-//     const orangesPieces = cutFruitPieces(oranges);// ici on appelle la fonction du dessus dans la seconde fonction.
-
-//     const juice = `Jus de ${pommesPieces} morceaux de pommes et ${orangesPieces} morceaux d'oranges. 🧃`;
-//     return juice;
+//   const juice = `Jus de ${pommesPieces} morceaux de pommes et ${orangesPieces} morceaux d'oranges. 🧃 uh uh\
+//  uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh uh `
+//   return juice
 // }
 // console.log(fruitProcessor(2, 3))
 
-
+//
 // // assignement
 
 // const percentageTotalPop = function (populationSpe) {
@@ -136,7 +136,7 @@
 // }
 // const AlexIsPd = function (firstName) {
 //     if (firstName === "Alex") {
-//         const resultAlex = `${firstName}("nom de pd")`
+//         const resultAlex = `${firstName}("nom d'oiseau")`
 //         return resultAlex;
 //     } else {
 //         return firstName;
@@ -156,7 +156,7 @@
 //         return `${firstName} is already retired`
 //     }
 
-
+//
 // }
 // console.log(yearsUntilRetirement(1995, "Alex"))
 
@@ -188,10 +188,10 @@
 
 // COURSE 39 intro to arrays
 
-const friend1 = "Jeff"
-const friend2 = "Peter"
-const friend3 = "Steven"
+const friend1 = 'Jeff'
+const friend2 = 'Peter'
+const friend3 = 'Steven'
 // chiant de les rentrer un par un donc on utilise un type de data storage qui s'appelle Array:
 
-const friends = ["Jeff", "Peter", "Steven"];
+const friends = ['Jeff', 'Peter', 'Steven']
 console.log(friends)
