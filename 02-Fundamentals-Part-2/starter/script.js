@@ -188,10 +188,62 @@
 
 // COURSE 39 intro to arrays
 
-const friend1 = 'Jeff'
-const friend2 = 'Peter'
-const friend3 = 'Steven'
+// const friend1 = 'Jeff'
+// const friend2 = 'Peter'
+// const friend3 = 'Steven'
 // chiant de les rentrer un par un donc on utilise un type de data storage qui s'appelle Array:
 
-const friends = ['Jeff', 'Peter', 'Steven']
-console.log(friends)
+// const friends = ['Jeff', 'Peter', 'Steven']
+// console.log(friends)
+// // autre manière de decla un array:
+
+// const y = new Array(1991, 1995, 1999, 2000)
+// console.log(y)
+
+// console.log(friends[0])// permet d'utiliser un element de la liste(0 est le premier)
+// console.log(friends.length)// shows nb of elements in the array
+// console.log(friends[friends.length - 1])// comme c'est en base zero le nombre d'elem -1 ressort le dernier de la liste
+
+// friends[1] = 'Pilat' // remplace le deuxieme ami de la liste, meme si friends est store dans une const on peut changer les values car un array n'est pas une primitive value.(seules les primitives peuvent pas etre changées)
+// console.log(friends)
+// // friends = ['Max', 'Josh'] ça cree une erreur, on ne peut pas changer entierement la const.
+
+// const firstName = 'Max'
+// const me = [firstName, 'Moons', 2023 - 1995, friends] // on peut store des expressions à l'intérieur.
+// console.log(me)
+
+// // exercise
+
+// const calcAge = function (birthyear) {
+//   return 2023 - birthyear
+// }
+// const years = [1995, 1991, 1994, 2000]
+// console.log(calcAge(years)) // retourne un NaN car la fonction attend une seule value
+
+// const age = calcAge(years[0])
+// const age2 = calcAge(years[1])
+// const age3 = calcAge(years[2])
+// const ageLast = calcAge(years[years.length - 1])
+// console.log(age, age2, age3, ageLast)
+// // pour store les values dans un nouvel array on peut y metter les nouvelles const ou directement les function calls car elles return une value
+
+// const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[2])] // etc, etc...
+// console.log(ages)
+
+// assignment
+
+// const populations = [60000000, 50000000, 40000000, 70000000]
+// console.log(populations.length === 4)
+
+// const percentageTotalPop = function (populationSpe) {
+//   return (populationSpe / 7900000000) * 100
+// }
+// const percentagesPop = [
+//   percentageTotalPop(populations[0]),
+//   percentageTotalPop(populations[1]),
+//   percentageTotalPop(populations[2]),
+//   percentageTotalPop(populations[populations.length - 1])]
+
+// console.log(percentagesPop)
+
+// COURSE Basic Array operations
