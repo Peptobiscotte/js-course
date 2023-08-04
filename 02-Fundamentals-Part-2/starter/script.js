@@ -246,4 +246,142 @@
 
 // console.log(percentagesPop)
 
-// COURSE Basic Array operations
+// COURSE 40 Basic Array operations
+
+// const friends = ['Mike', 'Peter', 'Joss']
+
+// friends.push('Pilat')// add element at the end
+// console.log(friends)
+
+// friends.unshift('Jamon')// add element at the beginning
+// console.log(friends)
+// // les deux sont des fonctions (ou array methods ici) donc elles return sth, ici la length of the array.
+
+// const popped = friends.pop()// delete last elem and returns the removed element
+// console.log(friends)
+// console.log(popped)
+
+// const shifted = friends.shift()// delete first elem and returns it
+// console.log(friends)
+// console.log(shifted)
+
+// console.log(friends.indexOf('Joss'))// donne la position de l'elem demandé
+// console.log(friends.indexOf('Bob'))// retourne -1 si l'elem demandé n'est pas dans l'array
+
+// console.log(friends.includes('Joss'))// retourne true si dans l'array
+// console.log(friends.includes('Bob'))// retourne false si non existant
+// // ici la fonction utilise une strict equality(===) donc elle ne fait pas de type coercion(le number 23 n'est pas égal à la string '23')
+// // comme la fonction includes return un boolean on peut l'inserer dans un bloc de condition:
+
+// if (friends.includes('Joss')) {
+//   console.log("T'es le pote de Joss")
+// } else {
+//   console.log("T'es pas son pote")
+// }
+
+// // assignment
+
+// const neighbourCountries = ['Belgium', 'Switzerland', 'Italy']
+// neighbourCountries.push('Utopia')
+// neighbourCountries.pop()
+// console.log(neighbourCountries)
+
+// if (!neighbourCountries.includes('Germany')) {
+//   console.log('Germany is not your neighbour')
+// }
+
+// neighbourCountries[neighbourCountries.indexOf('Italy')] = 'Italia'
+// console.log(neighbourCountries)
+
+// Coding challenge # 2
+
+// const calcTip = function (bill) {
+//   if (bill >= 50 && bill <= 300) {
+//     return bill * 0.15
+//   } else {
+//     return bill * 0.2
+//   }
+// }
+
+// // la condition if/else de cette fonction aurait pu etre ecrite avec un ternary operator:
+
+// // calcTip = function (bill) {
+// //   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2
+// // }
+
+// const bills = [125, 555, 44]
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
+// console.log(tips)
+// // eslint-disable-next-line max-len
+// const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+// console.log(total)
+
+// COURSE 42 Intro to Objects
+
+// const Max = {
+//   firstName: 'Max',
+//   lastName: 'Moons',
+//   age: 2023 - 1995,
+//   job: ['musician', 'dev']
+// }
+// console.log(Max.job[0])
+// // assignment
+// const myCountry = {
+//   country: 'France',
+//   capital: 'Paris',
+//   language: 'French',
+//   population: 70000000,
+//   neighbours: ['Belgium', 'Germany', 'Switzerland', 'Italy', 'Spain']
+// }
+// console.log(myCountry)
+// console.log(myCountry.neighbours[1])
+
+// COURSE 43 Dot vs Bracket notation
+
+// const Max = {
+//   firstName: 'Max',
+//   lastName: 'Moons',
+//   age: 2023 - 1995,
+//   job: ['musician', 'dev'],
+//   friends: ['Bibi', 'Doudou', 'Kikougno']
+// }
+
+// const nameKey = 'Name'
+// console.log(Max.lastName)
+// console.log(Max['first' + nameKey]) // la bracket notation permet de faire des operations dans l'appel de l'element.
+// console.log(Max['last' + nameKey])
+
+// const interest = prompt('Select one: firstName, lastName, age, job.') // prompt est une fonction qui retourne ce que l'utilisateur écrit dans le pop up.
+// console.log(interest)
+// // console.log(Max[interest]) // on aurait pas pu appeler la const interest avec la dot notation, on a besoin de la bracket notation ici
+
+// if (Max[interest]) {
+//   console.log(Max[interest])
+// } else {
+//   console.log('Wrong')
+// }
+
+// Max.location = 'France' // on peut rajouter des infos à l'objet de cette maniere.
+// Max.hairColor = 'black'
+// console.log(Max)
+
+// // const choseBetween = prompt('Chose what you want')
+// // Max.Choice = choseBetween // on peut rajouter un element a la liste basé sur l'input de l'utilisateur
+
+// console.log(`${Max.firstName} has ${Max.friends.length} friends and his \
+// best friend is called ${Max.friends[0]}`)
+
+// assignment
+
+const myCountry = {
+  country: 'France',
+  capital: 'Paris',
+  language: 'French',
+  population: 70000000,
+  neighbours: ['Belgium', 'Germany', 'Switzerland', 'Italy', 'Spain']
+}
+myCountry.population = 72000000
+
+console.log(`${myCountry.country} has ${myCountry.population}\
+ ${myCountry.language} speaking people, ${myCountry.neighbours.length}\
+  neighbours and a capital called ${myCountry.capital}`)
