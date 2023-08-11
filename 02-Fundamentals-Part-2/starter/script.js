@@ -373,15 +373,191 @@
 
 // assignment
 
-const myCountry = {
-  country: 'France',
-  capital: 'Paris',
-  language: 'French',
-  population: 70000000,
-  neighbours: ['Belgium', 'Germany', 'Switzerland', 'Italy', 'Spain']
-}
-myCountry.population = 72000000
+// const myCountry = {
+//   country: 'France',
+//   capital: 'Paris',
+//   language: 'French',
+//   population: 70000000,
+//   neighbours: ['Belgium', 'Germany', 'Switzerland', 'Italy', 'Spain']
+// }
+// myCountry.population = 72000000
 
-console.log(`${myCountry.country} has ${myCountry.population}\
- ${myCountry.language} speaking people, ${myCountry.neighbours.length}\
-  neighbours and a capital called ${myCountry.capital}`)
+// console.log(`${myCountry.country} has ${myCountry.population}\
+//  ${myCountry.language} speaking people, ${myCountry.neighbours.length}\
+//   neighbours and a capital called ${myCountry.capital}`)
+
+// COURSE 44 Objects methods
+
+// const max = {
+//   firstName: 'Max',
+//   lastName: 'Moons',
+//   birthyear: 1995,
+//   job: 'musician',
+//   friends: ['Ilan', 'Tom', 'Bastien'],
+//   hasDriversLicense: false,
+//   // calcAge: function (birthyear) { // la syntaxe de la fonction change un peu car maintenant c'est une valeur de l'objet 'max', on doit utiliser une fonction expression
+//   //   return 2023 - 1995 // une fonction dans un objet est appelée une method
+//   // },
+
+//   calcAge2: function () {
+//     this.age = 2023 - this.birthyear // on store le resultat de la fonction dans l'objet directement en utilisant this.
+//     return this.age // ici en utilisant 'this' on a pas besoin de definir de variable a la fonction, elle va prendre les variables directement dans l'objet.
+//   }, // on pourrait utiliser jonas.birthyear mais ça casse le DRY principle et ça casserait la fonction si on change le nom de la const par exemple.
+
+//   getSummary: function () {
+//     this.summary = `${this.firstName} is a ${this.calcAge2()} years old ${this.job} and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.` // pour inserer une decision if/else dans cette string template litteral on utilise un ternary operator ? :
+//     return this.summary
+//   }
+// }
+
+// console.log(max.calcAge(max.birthyear))
+// console.log(max.calcAge2())
+// console.log(max.age)
+// console.log(max) // ici on voit que 'age' a été défini dans l'objet max.
+
+// challenge
+// console.log(max.getSummary())
+// console.log(max)
+
+// assignment
+
+// const myCountry = {
+//   country: 'France',
+//   capital: 'Paris',
+//   language: 'French',
+//   population: 70000000,
+//   neighbours: ['Belgium', 'Germany', 'Switzerland', 'Italy', 'Spain'],
+
+//   describe: function () {
+//     return `${this.country} has ${this.population} ${this.language}\
+//  speaking people and ${this.neighbours.length} neighbours.`
+//   },
+
+//   isIsland: function () {
+//     this.Island = this.neighbours.length === 0
+//     return this.Island
+//   }
+// }
+// console.log(myCountry.isIsland())
+// console.log(myCountry.describe())
+// console.log(myCountry)
+
+// Coding Challenge # 3
+
+// const mark = {
+//   firstName: 'Mark',
+//   lastName: 'Miller',
+//   mass: 78,
+//   height: 1.69,
+
+//   calcBMI: function () {
+//     this.BMI = this.mass / (this.height ** 2)
+//     return this.BMI
+//   }
+// }
+// const john = {
+//   firstName: 'John',
+//   lastName: 'Smith',
+//   mass: 92,
+//   height: 1.95,
+
+//   calcBMI: function () {
+//     this.BMI = this.mass / (this.height ** 2)
+//     return this.BMI
+//   }
+// }
+
+// mark.calcBMI()
+// john.calcBMI()
+
+// console.log(mark, john)
+// if (mark.BMI > john.BMI) {
+//   console.log(`${mark.firstName}'s BMI(${mark.BMI}) is higher than\
+//  ${john.firstName}'s (${john.BMI}).`)
+// } else {
+//   console.log(`${john.firstName}'s BMI(${john.BMI}) is higher than\
+//   ${mark.firstName}'s (${mark.BMI}).`)
+// }
+
+// COURSE 46 Iteration the for loop
+
+// console.log('Repetition 1 🏋️‍♂️')
+// console.log('Repetition 2 🏋️‍♂️')
+// console.log('Repetition 3 🏋️‍♂️')
+// console.log('Repetition 4 🏋️‍♂️')
+// console.log('Repetition 5 🏋️‍♂️')
+// console.log('Repetition 6 🏋️‍♂️')
+
+// for (let rep = 1; rep <= 6; rep++) { // 1ere partie on declare la valeur qui bouge et son etat de base
+//   console.log(`'Repetition ${rep} 🏋️‍♂️'`) // 2eme partie on declare la condition qui fait s'arreter la boucle
+// } // 3eme partie on declare ce que l'on fait a la fin de chaque boucle.
+
+// assignment
+
+// for (let voter = 1; voter <= 50; voter++) {
+//   console.log(`Voter number ${voter} is currently voting, ${50 - voter} left`)
+// }
+
+// COURSE 47 looping arrays
+
+// const maxArray = [
+//   'Max',
+//   'Moons',
+//   2023 - 1995,
+//   'musician',
+//   ['Ilan', 'Tom', 'Bastien'],
+//   true
+// ]
+
+// const types = [] // ici on cree un array vide qu'on remplira avec les resultats de la loop.
+
+// // console.log(maxArray[0])
+// // console.log(maxArray[1]) // pour console log tous les elements d'un array sans loop
+
+// for (let i = 0; i < maxArray.length; i++) { // on part de 0 et on va jusqu'a <5 car en array le premier de la liste est 0 pas 1
+//   console.log(maxArray[i], typeof maxArray[i])
+//   //   types[i] = typeof maxArray[i]
+//   types.push(typeof maxArray[i]) // meme utilité qu'au dessus
+// }
+
+// console.log(types)
+
+// const years = [1995, 2000, 1991, 1967]
+// const ages = []
+
+// for (let i = 0; i < years.length; i++) {
+// //   console.log(2023 - years[i])
+//   //   ages[i] = 2023 - years[i]
+//   ages.push(2023 - years[i])
+// }
+
+// console.log(ages)
+
+// continue and break
+
+// console.log('continue with strings')
+// for (let i = 0; i < maxArray.length; i++) {
+//   if (typeof maxArray[i] !== 'string') continue // comprendre: si le type de value n'est pas une string, passe au suivant, ce qui aura pour effet d'appliquer le resultat de la loop (ici un console.log) uniquement sur les strings.
+//   console.log(maxArray[i], typeof maxArray[i])
+// }
+
+// console.log('break with number')
+// for (let i = 0; i < maxArray.length; i++) {
+//   if (typeof maxArray[i] === 'number') break // comprendre: si le type de value est un number, mets fin a la boucle.
+//   console.log(maxArray[i], typeof maxArray[i])
+// }
+
+// assignment
+
+const populations = [60000000, 50000000, 40000000, 70000000]
+
+const percentageTotalPop = function (populationSpe) {
+  return (populationSpe / 7900000000) * 100
+}
+const percentages2 = []
+
+for (let i = 0; i < populations.length; i++) {
+  percentages2.push(percentageTotalPop(populations[i]))
+}
+
+console.log(percentages2)
