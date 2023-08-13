@@ -549,15 +549,132 @@
 
 // assignment
 
-const populations = [60000000, 50000000, 40000000, 70000000]
+// const populations = [60000000, 50000000, 40000000, 70000000]
 
-const percentageTotalPop = function (populationSpe) {
-  return (populationSpe / 7900000000) * 100
+// const percentageTotalPop = function (populationSpe) {
+//   return (populationSpe / 7900000000) * 100
+// }
+// const percentages2 = []
+
+// for (let i = 0; i < populations.length; i++) {
+//   percentages2.push(percentageTotalPop(populations[i]))
+// }
+
+// console.log(percentages2)
+
+// COURSE 48 Loop back and loop in loop
+
+// const maxArray = [
+//   'Max',
+//   'Moons',
+//   2023 - 1995,
+//   'musician',
+//   ['Ilan', 'Tom', 'Bastien'],
+//   true
+// ]
+
+// for (let i = maxArray.length - 1; i >= 0; i--) {
+//   console.log(i, maxArray[i])
+// }
+// // on veut faire 5 rep de 3 exercices differents :
+
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`----Starting exercise ${exercise}`)
+
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Weight lift rep ${rep}`)
+//   }
+// }
+// assignment
+
+// const listOfNeighbours = [
+//   ['Canada', 'Mexico'],
+//   ['Spain'],
+//   ['Norway', 'Sweden', 'Russia']
+// ]
+
+// for (let i = 0; i < listOfNeighbours.length; i++) {
+//   for (let j = 0; j < listOfNeighbours[i].length; j++) {
+//     console.log(`Neighbours: ${listOfNeighbours[i][j]}`)
+//   }
+// }
+
+// COURSE While Loop
+
+// for (let rep = 1; rep <= 6; rep++) {
+//   console.log(`'Repetition ${rep} 🏋️‍♂️'`)
+// }
+// pour faire ça avec une boucle while on declare la variable rep avant
+
+// let rep2 = 1
+// while (rep2 <= 6) {
+//   console.log(`'Repetition ${rep2} 🏋️‍♂️'`)
+//   rep2++
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`)
+//   dice = Math.trunc(Math.random() * 6) + 1
+//   if (dice === 6) { console.log(`You rolled a ${dice}, Gz!`) }
+// }
+
+// assignment
+
+// const populations = [60000000, 50000000, 40000000, 70000000]
+// const percentageTotalPop = function (populationSpe) {
+//   return (populationSpe / 7900000000) * 100
+// }
+// const percentages2 = []
+// let i = 0
+
+// while (i < populations.length) {
+//   const perc = percentageTotalPop(populations[i])
+//   percentages2.push(perc)
+//   i++
+// }
+// console.log(percentages2)
+
+// Coding challenge # 4
+
+const calcTip = function (bill) {
+  if (bill >= 50 && bill <= 300) {
+    return bill * 0.15
+  } else {
+    return bill * 0.2
+  }
 }
-const percentages2 = []
 
-for (let i = 0; i < populations.length; i++) {
-  percentages2.push(percentageTotalPop(populations[i]))
+const bills = [
+  22,
+  295,
+  176,
+  440,
+  37,
+  105,
+  10,
+  1100,
+  86,
+  52
+]
+
+const tips = []
+const total = []
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]))
+  total.push(bills[i] + calcTip(bills[i]))
+}
+console.log(tips)
+console.log(total)
+
+let sum = 0
+const calcAverage = function (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i]
+  }
+  return sum / arr.length
 }
 
-console.log(percentages2)
+console.log(calcAverage(total))
