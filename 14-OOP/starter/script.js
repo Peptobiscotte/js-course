@@ -253,4 +253,406 @@
 // car1.speedUS = 50 // on appelle la fonction set speedUS comme ça
 // console.log(car1)
 
-// COURSE
+// COURSE 218 inheritance between classes / Constructor
+
+// constructor function
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName
+//   this.birthYear = birthYear
+// }
+// Person.prototype.calcAge = function () {
+//   console.log(2023 - this.birthYear)
+// }
+
+// const Student = function (firstName, birthYear, course) {
+// //   this.firstName = firstName // on ne veut pas repeter ça car c'est deja dans Person
+// //   this.birthYear = birthYear
+//   Person.call(this, firstName, birthYear)
+//   this.course = course
+// }
+
+// Student.prototype = Object.create(Person.prototype) // ⚠️ ici on link le proto Person a Student, Student.proto devient Person.proto, il faut le faire avant de declarer de nouvelles methodes car ça overwrite les autres.
+// Student.prototype.constructor = Student // cette ligne permet de redéfinir le constructor de mike(par exemple) sur Student, sinon il le met sur Person directement ce qui peut avoir des incidences plus tard
+
+// Student.prototype.introduce = function () {
+//   console.log(`${this.firstName} is studying ${this.course}`)
+// }
+
+// const mike = new Student('Mike', 2010, 'Computer Science')
+// console.log(mike)
+// mike.introduce()
+// mike.calcAge()
+
+// Coding challenge # 3 🍭
+
+// const Car = function (make, speed) {
+//   this.make = make
+//   this.speed = speed
+// }
+
+// Car.prototype.accelerate = function () {
+//   console.log(this.speed += 10)
+// }
+// Car.prototype.brake = function () {
+//   console.log(this.speed -= 5)
+// }
+
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed)
+//   this.charge = charge
+// }
+
+// EV.prototype = Object.create(Car.prototype)
+// EV.prototype.constructor = EV
+
+// EV.prototype.accelerate = function () {
+//   this.speed += 20
+//   this.charge -= 1 // on pourrait ecrire -- (opposé de ++)
+//   // eslint-disable-next-line max-len
+//   console.log(`${this.make} going at ${this.speed} km/h with ${this.charge} % charge`)
+// }
+
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo
+// }
+
+// const car1 = new EV('Tesla', 120, 23)
+// console.log(car1)
+// car1.brake()
+// car1.accelerate() // ici on voit que la fonction accelerate de EV a overwrite la fonction accelerate de Car, cf Polymorphism
+// car1.chargeBattery(90)
+// console.log(car1)
+
+// COURSE 220 Inheritance between classes / Classes
+
+// class PersonCl { // autre maniere de declarer une classe que par un constructor.
+//   constructor (fullName, birthYear) {
+//     this.fullName = fullName
+//     this.birthYear = birthYear
+//   }
+
+//   calcAge () {
+//     console.log(2023 - this.birthYear)
+//   }
+
+//   greet () {
+//     console.log(`Hey ${this.fullName}`)
+//   }
+
+//   get age () {
+//     return 2023 - this.birthYear
+//   }
+
+//   set fullName (name) {
+//     if (name.includes(' ')) this._fullName = name
+//     else alert(`${name} is not a full name`)
+//   }
+
+//   get fullName () {
+//     return this._fullName
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor (fullName, birthYear, course) {
+//     super(fullName, birthYear)
+//     this.course = course // c'est l'équivalent de la premiere ligne ou on fait (Objet).call avec la methode constructor
+//   } // pas besoin de spécifier (this) en arguments, la fonction super le fait auto (c'est pour ça qu'on doit la mettre en premier).
+
+//   introduce () {
+//     // eslint-disable-next-line max-len
+//     console.log(`Hi, my name is ${this.fullName} and i want to become a ${this.course}`)
+//   }
+
+//   calcAge () {
+//     console.log(`${this.fullName} is ${2023 - this.birthYear}`)
+//   }
+// }
+
+// const paxit = new StudentCl('Paxit Moons', 1969, 'Blacksmith')
+// console.log(paxit)
+// paxit.introduce() // method dans le proto
+// paxit.calcAge() // method héritée du proto parent (Person) mais overwrite (Polymorphism)
+// paxit.greet() // method héritée du proto parent (PersonCl)
+
+// COURSE 221 Inheritance between classes / Objectcreate
+
+// const PersonProto = {
+//   calcAge () {
+//     console.log(2023 - this.birthYear)
+//   },
+
+//   init (firstName, birthYear) {
+//     this.firstName = firstName
+//     this.birthYear = birthYear
+//   },
+//   fart () {
+//     console.log(`${this.firstName} farts!`)
+//   }
+// }
+
+// const StudentProto = Object.create(PersonProto)
+
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear)
+//   this.course = course
+// }
+// StudentProto.introduce = function () {
+//   console.log(`${this.firstName} studies ${this.course}`)
+// }
+// StudentProto.fart = function () {
+//   console.log(`${this.firstName} farts! What a Joker.`)
+// }
+
+// const paxit = Object.create(StudentProto)
+// paxit.init('Paxit', 1969, 'Babies')
+// console.log(paxit)
+// paxit.introduce() // method écrite dans StudentProto
+// paxit.calcAge() // method héritée
+// paxit.fart() // method overwrite (Polymorphism)
+
+// COURSE 222 Another Class Example
+
+// class Account {
+//   constructor (owner, currency, pin) {
+//     this.owner = owner
+//     this.currency = currency
+//     this.pin = pin
+//     this.movements = []
+//     this.locale = navigator.language
+//   }
+
+//   // en dessous le Public interface: (API)
+//   deposit (val) {
+//     this.movements.push(val) // cette fonction quand invoquée va remplir l'array movements.
+//   }
+
+//   withdraw (val) {
+//     this.deposit(-val) // on invoque la method dans la method.
+//   }
+
+//   approveLoan (val) {
+//     return false
+//   }
+
+//   requestLoan (val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val)
+//       console.log('Loan approved')
+//     } else {
+//       console.log('Loan disapproved')
+//     }
+//   }
+// }
+
+// const acc1 = new Account('Max', 'EUR', 1234)
+// acc1.deposit(200)
+// acc1.withdraw(150)
+// console.log(acc1)
+
+// acc1.requestLoan(1000) // ici on demande 1000$ de pret et on nous les verse si la condition approveLoan est true.
+// mais on voit que la methode approveLoan est utilisable a la main
+// meme si sa seule utilité devrait etre au sein d'une demande requestLoan
+// c'est pour ça qu'il y a la data encapsulation et data privacy
+
+// COURSE 223 Encapsulation protect properties and methods
+
+// l'idée est qu'on protege des methodes et des propriétés
+// ces methodes et propriétés ne pourront pas etre touchées par le public
+// en revanche le public pourra acceder a certaines methodes
+
+// class Account {
+//   constructor (owner, currency, pin) {
+//     this.owner = owner
+//     this.currency = currency
+//     this.pin = pin
+//     // protected property (this._) ça n'empeche pas de l'utiliser mais c'est une convention qui dit aux autres dev de ne pas utiliser cet element en dehors de l'API
+//     this._movements = []
+//     this.locale = navigator.language
+//   }
+
+//   // en dessous le Public interface: (API)
+//   deposit (val) {
+//     this._movements.push(val)
+//   }
+
+//   withdraw (val) {
+//     this.deposit(-val)
+//   }
+
+//   approveLoan (val) {
+//     return true
+//   }
+
+//   requestLoan (val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val)
+//       console.log('Loan approved')
+//     } else {
+//       console.log('Loan disapproved')
+//     }
+//   }
+// }
+
+// const acc1 = new Account('Max', 'EUR', 1234)
+// console.log(acc1)
+// acc1.requestLoan(1000)
+// en gros on ecrit _nomdelapropriété pour signifier aux dev de faire gaffe.
+
+// COURSE 224 Encapsulation Private class fields and methods
+
+// les 4 types de fields
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+// 4) Private methods
+
+// class Account {
+//   // 1) Public Fields ils sont rajoutés a toutes les instances mais pas au proto
+//   locale = navigator.language
+
+//   // 2) Private Fields
+//   #movements = []
+//   #pin // vu que pin est une des variables du constructor on ne declare rien ici.
+
+//   constructor (owner, currency, pin) {
+//     this.owner = owner
+//     this.currency = currency
+//     this.#pin = pin
+//     // this._movements = []
+//     // this.locale = navigator.language
+//   }
+
+//   // 3) Public methods
+//   // en dessous le Public interface: (API)
+//   getMovements () {
+//     return this.#movements
+//   }
+
+//   deposit (val) {
+//     this.#movements.push(val)
+//   }
+
+//   withdraw (val) {
+//     this.deposit(-val)
+//   }
+
+//   requestLoan (val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val)
+//       console.log('Loan approved')
+//     } else {
+//       console.log('Loan disapproved')
+//     }
+//   }
+
+//   approveLoan (val) {
+//     return true
+//   }
+
+//   // 4) Private methods
+// //   #approveLoan (val) {
+// //     return true
+// //   }
+// }
+
+// const acc1 = new Account('Max', 'EUR', 1234)
+// acc1.deposit(200)
+// acc1.requestLoan(1000)
+// console.log(acc1)
+
+// // console.log(acc1.#movements) // ici on voit qu'on ne peut pas utiliser movements en dehors de la classe car il est privé
+// console.log(acc1.getMovements()) // mais on peut les visualiser grace a cette methode publique.
+// // console.log(acc1.#pin) // le pin non plus n'est pas accessible.
+
+// COURSE 225 Chaining Methods
+
+// class Account {
+//   locale = navigator.language
+
+//   #movements = []
+//   #pin
+
+//   constructor (owner, currency, pin) {
+//     this.owner = owner
+//     this.currency = currency
+//     this.#pin = pin
+//   }
+
+//   getMovements () {
+//     return this.#movements
+//   }
+
+//   deposit (val) {
+//     this.#movements.push(val)
+//     return this // le fait de return this permet de chain les methods
+//   }
+
+//   withdraw (val) {
+//     this.deposit(-val)
+//     return this
+//   }
+
+//   requestLoan (val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val)
+//       console.log('Loan approved')
+//     } else {
+//       console.log('Loan disapproved')
+//     }
+//     return this
+//   }
+
+//   approveLoan (val) {
+//     return true
+//   }
+// }
+
+// const acc1 = new Account('Max', 'EUR', 1234)
+
+// // Chaining
+// acc1.deposit(100).deposit(200).withdraw(200).requestLoan(1000)
+// console.log(acc1.getMovements()) // on voit que le chain a fonctionné
+
+// Coding challenge # 4
+
+// class CarCl {
+//   constructor (make, speed) {
+//     this.make = make
+//     this.speed = speed
+//   }
+
+//   accelerate () {
+//     this.speed += 10
+//   }
+
+//   brake () {
+//     this.speed -= 5
+//     return this
+//   }
+// }
+
+// class EVCl extends CarCl {
+//   #charge
+//   constructor (make, speed, charge) {
+//     super(make, speed)
+//     this.#charge = charge
+//   }
+
+//   accelerate () {
+//     this.speed += 20
+//     this.#charge -= 1
+//     return this
+//   }
+
+//   chargeBattery (chargeTo) {
+//     this.#charge = chargeTo
+//     return this
+//   }
+// }
+
+// const car1 = new EVCl('Tesla', 120, 23)
+// console.log(car1)
+// car1.accelerate().accelerate().accelerate().chargeBattery(90).brake()
+// console.log(car1)
+// // console.log(car1.#charge)
