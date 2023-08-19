@@ -61,6 +61,35 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount')
 const inputCloseUsername = document.querySelector('.form__input--user')
 const inputClosePin = document.querySelector('.form__input--pin')
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '' // cette ligne permet de vider le html avant
+  // de rentrer nos données.
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal'
+    const html = `
+    <div class="movements">
+      <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__value">${mov}</div>
+    </div>
+    `
+
+    containerMovements.insertAdjacentHTML('afterbegin', html)
+    // ⚠️ c'est comme ça qu'on insere du js dans son html et vice versa
+    // ici on definit une fonction mère dans laquelle on définit notre vraie fonction
+    // notre fonction check chaque élement de l'array qu'on lui fournit et
+    // renvoie son index, son type et sa valeur.
+    // on crée une constant 'html' dans laquelle on insere notre html déja écrit
+    // en template literal et on remplace les placeholders par les valeurs
+    // renvoyées par la fonction.
+    // puis containerMovements (qui est la requete de la class movements du html)
+    // appelle inserAdjacentHTML avec comme attribut la position du js et
+    // la string html que l'on veut insérer (ici la const html qu'on a créé.)
+  })
+}
+
+displayMovements(account1.movements)
+
 /// //////////////////////////////////////////////
 /// //////////////////////////////////////////////
 // LECTURES
@@ -71,7 +100,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling']
 ])
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 
 // /// //////////////////////////////////////////////
 
@@ -123,7 +152,7 @@ const currencies = new Map([
 
 // COURSE 144 Looping array forEach method
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 
 // for (const actions of movements) { // actions fait réference à chque élement de movements,
 //   if (actions > 0) { // comprendre que la boucle va vérifier chaque élement et lui appliquer sa condition.
@@ -133,14 +162,18 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 //   }
 // }
 
-movements.forEach(function (actions, index, array) { // ⚠️ syntax, l'argument de la fonction forEach est une fonction donc on ferme le bloc de code par la parenthèse ) de la fonction forEach.
-  if (actions > 0) {
-    console.log(`Movement ${index + 1}: You deposited ${actions}`) // l'argument de la function sera chaque élement de l'array un par un, pas besoin de spécifier.
-  } else {
-    console.log(`Movement ${index + 1}: You withdrew ${-actions}`) // on peut ajouter deux arguments à la fonction, index et array car la method forEach prend en compte automatiquement ces arguments, toujours dans l'ordre élement, index de l'élement, array en entier
-  }
-})
+// movements.forEach(function (actions, index, array) { // ⚠️ syntax, l'argument de la fonction forEach est une fonction donc on ferme le bloc de code par la parenthèse ) de la fonction forEach.
+//   if (actions > 0) {
+//     console.log(`Movement ${index + 1}: You deposited ${actions}`) // l'argument de la function sera chaque élement de l'array un par un, pas besoin de spécifier.
+//   } else {
+//     console.log(`Movement ${index + 1}: You withdrew ${-actions}`) // on peut ajouter deux arguments à la fonction, index et array car la method forEach prend en compte automatiquement ces arguments, toujours dans l'ordre élement, index de l'élement, array en entier
+//   }
+// })
 
 // movements.forEach(function (actions) { // ⚠️ syntax, l'argument de la fonction forEach est une fonction donc on ferme le bloc de code par la parenthèse ) de la fonction forEach.
 //   console.log(actions)
 // })
+
+// COURSE 145 Maps and sets ⚠️⚠️⚠️ revenir ici plus tard
+
+// COURSE 146
