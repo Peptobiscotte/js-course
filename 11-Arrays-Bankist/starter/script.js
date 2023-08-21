@@ -90,6 +90,39 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements)
 
+// COURSE 151 Computing usernames
+
+// const user = 'Steven Thomas Williams' // we want initials stw.
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('')
+  })
+}
+createUsernames(accounts)
+// console.log(accounts)
+
+// createUsernames('Steven Thomas Williams')
+
+// const userInitials = username.map(name => name[0]) //
+// console.log(userInitials) // noter la syntax au dessus quand on utilise une arrow function en callback function.
+
+// const userInitialsDef = userInitials.join('')
+// console.log(userInitialsDef)
+// ici on a le résultat voulu en plusieurs const pour comprendre
+// mais le mieux serait de chain les methods sans redéclarer de variable
+// a chaque fois.
+
+const calcPrintBalance = function (movements) { // prend un array de movements.
+  const balance = movements.reduce((acc, mov) => acc + mov, 0)
+  labelBalance.textContent = `${balance} €` //
+}
+calcPrintBalance(account1.movements) // on utilise l'array de mov stocké dans l'objet acc1
+
 /// //////////////////////////////////////////////
 /// //////////////////////////////////////////////
 // LECTURES
@@ -170,10 +203,106 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 //   }
 // })
 
-// movements.forEach(function (actions) { // ⚠️ syntax, l'argument de la fonction forEach est une fonction donc on ferme le bloc de code par la parenthèse ) de la fonction forEach.
+// movements.forEach(function (actions) {
 //   console.log(actions)
 // })
 
 // COURSE 145 Maps and sets ⚠️⚠️⚠️ revenir ici plus tard
 
 // COURSE 146
+
+// COURSE 149 DATA transformations with map, filter, reduce
+
+// MAP
+// permet de loop comme un forEach mais crée un nouvel array avec les élements.
+
+// FILTER
+// loop mais permet de filtrer selon une condition donnée et retourne aussi
+// un nouvel array (comme un if/else, si l'element passe le test et est true
+// il va dans le nouvel array
+
+// REDUCE
+// réduit tous les élements d'un array en une valeur unique
+// exemple: additionne toutes les valeurs de l'array et return le resultat
+// on doit lui spécifier une opération (comme par exemple acc qui additionne)
+
+// COURSE 150 The Map Method
+// pour l'exemple on donne les movements en Euros et on veut convertir
+// en $ avec 1 EUR = 1.1 $
+
+// const eurToUsd = 1.1
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// // const movementsUSD = movements.map(function (mov) { // comme pour forEach on specifie une callback function.
+// //   return mov * eurToUsd
+// // })
+
+// const movementsUSD = movements.map((mov) => mov * eurToUsd) // exemple en utilisant une function arrow, le symbole => remplace le keyword function, on spécifie seulement la variable et ce que la function doit return (ici variable * eurUSD)
+// // avec une function arrow pas besoin du keyword return. ni des {}
+// // certains trouvent ça moins bien lisible mais c'est plus concis
+// console.log(movementsUSD)
+
+// const movementsDescription = movements.map((mov, i) =>
+// `Movement ${i + 1}: ${mov > 0 ? 'Deposit' : 'Withdrawal'}: ${mov}`
+
+//   // if (mov > 0) {
+//   //   return `Movement ${i + 1}: Deposit: ${mov}`
+//   // } else {
+//   //   return `Movement ${i + 1}: Withdrawal: ${-mov}`
+//   // } // on utilise un ternary operator et une arrow function pour simplifier l'écriture mais les functions classiques et les if/else statements sont toujours valables.
+
+// )// comme dans un forEach, on peut specifier la valeur, l'index et l'array intégral dans les variables de la callback function.
+
+// console.log(movementsDescription)
+
+// COURSE 152 The Filter Method
+
+// ici on veut par ex créer un array avec uniquement les deposit.
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// const deposit = movements.filter(function (mov) {
+//   return mov > 0 // on veut retrourner une boolean value, pas besoin de if else, seimplement la partie que l'on veut verifier comme etant true ou false.
+// })
+
+// console.log(deposit)
+
+// const withdrawals = movements.filter(mov => mov < 0)
+// console.log(withdrawals)
+
+// COURSE 153 The Reduce method
+
+// ici on veut connaitre la balance totale du compte
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// dans une reduce method, le premier argument de la callback function ne sera
+// pas le current argument de l'array mais l'accumulator (souvent noté acc)
+// penser à une boule de neige qui assimile les arguments un par un selon
+// l'opération qu'on lui demande de faire
+
+// const balance = movements.reduce(function (acc, mov, i, arr) {
+//   return acc + mov
+// }, 0) // le 0 ici est la valeur initiale de l'accumulator(snowball), pas obligé
+// // que ce soit 0.
+
+// const balance2 = movements.reduce((acc, mov) => acc + mov, 0) // method avec arrow function
+
+// console.log(balance, balance2)
+
+// get the max value of an array
+
+// const maxValue = movements.reduce(function (acc, mov) {
+//   if (mov > acc) {
+//     acc = mov
+//   }
+//   return acc
+// }, 0) // on peut aussi set la value de l'accumulator sur la premiere value de l'array (movements[0])
+
+// const maxValueShort = movements.reduce((acc, mov) => acc > mov ? acc : mov, 0)
+// // au dessus comprendre : si acc est supérieur à mov on return acc donc acc
+// // est la max value si ce n'est pas le cas on return le mov en cours
+// // qui devient la max value, dans ce cas la la value stockée sera un mov, pas l'acc
+// console.log(maxValue)
+// console.log(maxValueShort)
