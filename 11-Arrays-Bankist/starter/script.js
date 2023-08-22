@@ -123,6 +123,34 @@ const calcPrintBalance = function (movements) { // prend un array de movements.
 }
 calcPrintBalance(account1.movements) // on utilise l'array de mov stocké dans l'objet acc1
 
+const calcDisplaySummary = function (movements) { // on veut calculer les incomes outcomes et interest (bas de la page)
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0)
+  labelSumIn.textContent = `${incomes}€` // on va ensuite inspecter l'element html de la page à l'ndroit ou on veut inserer ce calcul(ici le query selector a été fait en amont)
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0)
+  labelSumOut.textContent = `${Math.abs(outcomes)}€` // Math.abs donne l'absolute value (pas de - ou de +)
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => (mov * 1.2 / 100) >= 1 ? mov * 1.2 / 100 : 0) // calcule un interet de 1.2% mais exclut les interets inferieur a 1$ on aurait aussi pu rajouter une filter method
+    .reduce((acc, mov) => acc + mov, 0)
+  labelSumInterest.textContent = `${interest}€`
+}
+
+calcDisplaySummary(account1.movements)
+
+// // Event handler
+// btnLogin.addEventListener('click', function (e) {
+//   // prevents form from submitting
+//   e.preventDefault()
+
+//   accounts.find(acc => acc.owner === inputLoginUsername.value)
+// })
+
 /// //////////////////////////////////////////////
 /// //////////////////////////////////////////////
 // LECTURES
@@ -306,3 +334,44 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 // // qui devient la max value, dans ce cas la la value stockée sera un mov, pas l'acc
 // console.log(maxValue)
 // console.log(maxValueShort)
+
+// COURSE 155 Chaining methods
+
+// const eurToUsd = 1.1
+
+// const totalDepositDollars = movements
+//   .filter(mov => mov > 0) // on garde uniquement les positifs (deposits) se souvenir que la method filter necessite une returned value et une arrow function return auto.
+//   .map(mov => mov * eurToUsd)
+//   .reduce((acc, mov) => acc + mov, 0)
+// // on peut inspecter l'array en cours en utilisant le 3eme parametre de la
+// // callback function(value, i, array) pour etre sur de pas avoir fait d'erreur.
+// console.log(totalDepositDollars)
+
+// ici on filtre les positifs pour avoir only les deposits
+// puis on map les deposits pour les convertir en $
+// puis on fait la somme des deposits
+// on obtient la somme des deposits en $
+
+// COURSE 157 the FIND method
+
+// la method permet de trouver le premier élement qui renvoie true
+// similaire a filter mais renvoie un seul element pas un array.
+
+// const firstDeposit = movements.find(mov => mov > 0)
+// console.log(firstDeposit) // on voit que le premier deposit (valeur positive) est 200
+
+// const accountFind = accounts.find(acc => acc.owner === 'Jessica Davis')
+// console.log(accountFind) // find est utilisé ici sur la liste d'accounts
+// et il va chercher un element d'un objet de la liste. (owner est un element de account)
+
+// for (const account of accounts) {
+//   if (account.owner === 'Jessica Davis') {
+//     console.log(account) // // pareil en utilisant une for of loop
+//   }
+// }
+
+// COURSE 158 Implementing login ⚠️⚠️⚠️ reprendre plus tard
+
+// COURSE 159 ⚠️⚠️⚠️
+
+// COURSE 160 findIndex method

@@ -24,12 +24,42 @@
 
 // CODING CHALLENGE #2
 
-const dogAge1 = [5, 2, 4, 1, 15, 8, 3]
-const dogAge2 = [16, 6, 10, 5, 6, 1, 4]
+// const dogAge1 = [5, 2, 4, 1, 15, 8, 3]
+// const dogAge2 = [16, 6, 10, 5, 6, 1, 4]
 
-const calcAverageHumanAge = function (ages) {
-  const humanAges = ages.map(age => age <= 2 ? age * 2 : age * 4 + 16)
-  // finir le challenge en utilisant filter pour 2) et reduce pour 3)
-}
+// // const calcAverageHumanAge = function (ages) {
+// //   const agesHuman = ages.map(function (age) {
+// //     if (age <= 2) {
+// //       return age * 2
+// //     } else {
+// //       return age * 4 + 16
+// //     }
+// //   })
+// //   return agesHuman // pourquoi on met le return ici?
+// // }
 
-console.log(calcAverageHumanAge(dogAge1))
+// // console.log(calcAverageHumanAge(dogAge1))
+
+// const calcAverageHumanAge = function (ages) {
+//   const agesHuman = ages.map(age => age <= 2 ? age * 2 : age * 4 + 16)
+//     .filter(function (age) {
+//       return age >= 18
+//     })
+//   const sumAges = agesHuman.reduce(function (acc, age) {
+//     return acc + age
+//   }, 0)
+//   return sumAges / agesHuman.length
+// }
+// console.log(calcAverageHumanAge(dogAge1))
+
+// CODING CHALLENGE # 3
+
+// const dogAge1 = [5, 2, 4, 1, 15, 8, 3]
+// const dogAge2 = [16, 6, 10, 5, 6, 1, 4]
+
+// const calcAverageHumanAge = ages => ages
+//   .map(age => age <= 2 ? age * 2 : age * 4 + 16)
+//   .filter(age => age >= 18)
+//   .reduce((acc, age, i, arr) => acc + age / arr.length, 0) // penser à inclure la variable array dans la methode reduce pour pouvoir calculer le sum (utile quand on fait une arrow function)
+
+// console.log(calcAverageHumanAge(dogAge1))
