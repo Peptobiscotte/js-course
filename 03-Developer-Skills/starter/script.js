@@ -41,3 +41,78 @@
 // // 1) Just merge two arrays
 // // 2) How to merge two arrays -> on declare 2 variables dans la fonction
 // // puis 1ere ligne on merge les 2 arrays avec la fonction concat.
+
+// COURSE 61 Debugging
+
+// const measureKelvin = function () {
+//   const measurement = {
+//     type: 'temp',
+//     unit: 'celsius',
+//     // 3) fix the bug
+
+//     value: Number(prompt('Degree celsius : '))
+
+//   }
+//   // 2) find the bug
+
+//   //   console.warn(measurement.value) // autres types de commandes de consoles (affiche un warning ou une error)
+//   //   console.error(measurement.value)
+//   console.table(measurement)
+
+//   const kelvin = measurement.value + 273
+//   return kelvin
+// }
+
+// // 1) identify the bug (it returns 10273 if we enter 10)
+
+// console.log(measureKelvin())
+
+// const calcTempAmpBug = function (arr, arr2) {
+//   arr = arr.concat(arr2)
+//   console.log(arr)
+//   let max = 0
+//   let min = 0 // le pb est la
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (typeof arr[i] !== 'number') { continue }
+
+//     if (arr[i] > max) {
+//       max = arr[i]
+//     }
+//     if (arr[i] < min) {
+//       min = arr[i]
+//     }
+//   }
+//   console.log(max, min)
+//   return `'The temperature amplitude is ${max - min}'`
+// }
+
+// const amplitudeBug = calcTempAmpBug([3, 5, 1], [9, 4, 5])
+// console.log(amplitudeBug)
+
+// CODING CHALLENGE # 1
+
+// const data1 = [17, 21, 23]
+// const data2 = [12, 5, -5, 0, 4]
+
+// // const printForecast = function (arr) {
+// //   const arrayJoined = arr.map(function (value, i) {
+// //     arr.join(`℃ in ${[i] + 1} days ... `)
+// //     return value
+// //   })
+// //   console.log(arrayJoined) // FONCTIONNE PAS
+// // }
+
+// const printForecast = function (arr) {
+//   let output = ''
+
+//   for (let i = 0; i < arr.length; i++) {
+//     output += `... ${arr[i]}℃ in ${[i + 1]} days `
+//   }
+//   console.log(output + '...') // si on veut 3 points a la fin de l'output comme on ne pouvait pas les mettre dans le template litteral (sinon il les aurait repeat 3 x)
+// }
+
+// printForecast(data1)
+
+// // console.log('----BREAK----')
+// // printForecast(data2)
