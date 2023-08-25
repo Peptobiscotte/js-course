@@ -47,6 +47,10 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1
 let score = 20 // on met une variable let car on va la modifier en cliquant
 let highscore = 0
 
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message // on crée une fonction pour ne pas avoir a repeter ce code trop de fois. a la place on appellera la fonction
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value) // on se souvient que la plupart des user inputs sont convertis en strings, comme on voudra comparer ce chiffre on va le transformer direct en Number()
   //   console.log(guess) // on voit que le resultat est un number
@@ -57,7 +61,8 @@ document.querySelector('.check').addEventListener('click', function () {
   if (!guess) { // if check si la condition est true, quand on ne rentre rien
     // guess est égal à 0, 0 etant 'falsy' on veut l'inverse donc !0 (ici !guess)
     // pour pouvoir appliquer la condition de if (qui doit etre true)
-    document.querySelector('.message').textContent = '😤 No Number!'
+    // document.querySelector('.message').textContent = '😤 No Number!'
+    displayMessage('😤 No Number!')
 
     //     // banane
     //   } else if (guess === 'banane') {
@@ -65,7 +70,7 @@ document.querySelector('.check').addEventListener('click', function () {
     //     document.querySelector('body').style.backgroundColor = '#f1eb3f'
     // When Player wins
   } else if (guess === secretNumber) {
-    document.querySelector('.message').textContent = 'Winner Winner 🐔 🍽️'
+    displayMessage('Winner Winner 🐔 🍽️')
     document.querySelector('body').style.backgroundColor = '#60b347'
     document.querySelector('.number').style.width = '30rem'
     document.querySelector('.number').textContent = secretNumber
@@ -74,26 +79,36 @@ document.querySelector('.check').addEventListener('click', function () {
       highscore = score
       document.querySelector('.highscore').textContent = highscore
     }
-    // When too low
-  } else if (guess < secretNumber) {
+    // When guess is wrong
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '📉 Too Low!'
+      displayMessage(guess < secretNumber ? '📉 Too Low!' : '📈 Too High!')
       document.querySelector('.score').textContent = score = score - 1
     } else {
-      document.querySelector('.message').textContent = '😭 LOSER!'
+      displayMessage('😭 LOSER!')
       document.querySelector('.score').textContent = 0
       document.querySelector('body').style.backgroundColor = '#c91c1c'
+      document.querySelector('.number').textContent = secretNumber
     }
-    // When too high
-  } else if (guess > secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = '📈 Too High!'
-      document.querySelector('.score').textContent = score--
-    } else {
-      document.querySelector('.message').textContent = '😭 LOSER!'
-      document.querySelector('.score').textContent = 0
-      document.querySelector('body').style.backgroundColor = '#c91c1c'
-    }
+  //   // When too low
+  // } else if (guess < secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector('.message').textContent = '📉 Too Low!'
+  //     document.querySelector('.score').textContent = score = score - 1
+  //   } else {
+  //     document.querySelector('.message').textContent = '😭 LOSER!'
+  //     document.querySelector('.score').textContent = 0
+  //     document.querySelector('body').style.backgroundColor = '#c91c1c'
+  //   }
+  //   // When too high
+  // } else if (guess > secretNumber) {
+  //   if (score > 1) {
+  //     document.querySelector('.message').textContent = '📈 Too High!'
+  //     document.querySelector('.score').textContent = score--
+  //   } else {
+  //     document.querySelector('.message').textContent = '😭 LOSER!'
+  //     document.querySelector('.score').textContent = 0
+  //     document.querySelector('body').style.backgroundColor = '#c91c1c'
   }
 })
 
@@ -110,7 +125,7 @@ document.querySelector('.check').addEventListener('click', function () {
 document.querySelector('.again').addEventListener('click', function () {
   score = 20
   secretNumber = Math.trunc(Math.random() * 20) + 1
-  document.querySelector('.message').textContent = 'Start guessing...'
+  displayMessage('Start guessing...')
   document.querySelector('.number').textContent = '?'
   document.querySelector('.score').textContent = score
   document.querySelector('.guess').value = ''
