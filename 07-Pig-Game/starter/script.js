@@ -29,7 +29,7 @@ score0El.textContent = 0
 score1El.textContent = 0
 diceEl.classList.add('hidden')
 
-const scores = [0, 0]
+let scores = [0, 0]
 let curScore = 0
 let activePlayer = 0
 let playing = true // pour s'assurer qu'on ne peut plus toucher le jeu a la fin.
@@ -82,4 +82,21 @@ btnHold.addEventListener('click', function () {
       switchPlayers()
     }
   }
+})
+btnNew.addEventListener('click', function () {
+  score0El.textContent = 0
+  score1El.textContent = 0
+  curScore0El.textContent = 0
+  curScore1El.textContent = 0
+  diceEl.classList.add('hidden')
+  document.querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--winner')
+  activePlayer = 0
+  document.querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active')
+
+  scores = [0, 0]
+  curScore = 0
+  activePlayer = 0
+  playing = true
 })
