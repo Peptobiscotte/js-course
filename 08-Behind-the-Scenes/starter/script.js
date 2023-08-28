@@ -183,3 +183,105 @@
 // f() // ici renvoie une erreur ou this est undefined car il s'agit d'une simple
 // // function call ou il n'y a pas d'objet. (il ne peut pas faire le calcul car
 // // this.year pointe sur undefined.year)
+
+// COURSE 98 Regular functions vs Arrow
+
+// const max = {
+//   year: 1995,
+//   firstName: 'Max',
+//   calcAge: function () {
+//     console.log(this)
+//     console.log(2023 - this.year)
+//     const self = this
+//     // const isMillenial = function () {
+//     // //   console.log(this.year >= 1981 && this.year <= 1996) // version qui montre l'absence de this keyword
+//     //   console.log(this.year >= 1981 && this.year <= 1996) // soluce 1 avec self constant = this
+//     // }
+//     const isMillenial = () => console.log
+//     (this.year >= 1981 && this.year <= 1996) // 2eme soluce en utilisant une arrow function comme son this keyword est reporté au scope précédent ici la method calcAge.
+//     isMillenial()
+//   },
+//   greet: () => console.log(`Hey ${this.firstName}`)
+// }
+// // une valeur contenue dans un objet sera contenue dans le global scope, l'objet ne cree pas de scope.
+// max.greet() // donc la arrow function n'ayant pas de this keyword, il sera associé au scope précedent donc au global scope.
+
+// // Jamais utiliser une arrow function en tant que method.
+
+// max.calcAge() // ici on voit que this est undefined dans la function isMillenial
+// // c'est du au comportement du this keyword, lors d'un simple appel de fonction,
+// // le this keyword ne pointe sur rien il a besoin d'un objet meme si il est a
+// // l'intérieur d'une methode car on a du appeler la fonction dans la methode
+// // une solution a ça est de déclarer une constant = this et d'utiliser le nom
+// // de la constante.
+
+// // Arguments keyword
+
+// const addExpr = function (a, b) {
+//   console.log(arguments)
+//   return a + b
+// }
+
+// addExpr(2, 5)
+// addExpr()
+
+// const addArrow = (a, b) => a + b
+
+// COURSE 99 Primitives, Objects primitives, reference types.
+
+// Primitive value examples (les number, strings, boolean, undefined, null...)
+// let age = 27
+// const oldage = age
+// age = 28
+
+// console.log(age)
+// console.log(oldage)
+
+// // Reference types examples (tout ce qui n'est pas primitive est un objet aussi appelé reference type)
+// const me = {
+//   name: 'Max',
+//   age: 28
+// }
+
+// const friend = me
+
+// friend.age = 27
+
+// console.log('Friend: ', friend)
+// console.log('Me: ', me) // ici on voit que me.age est 27, il a pris la valeur de friend.age
+
+// COURSE 100 Primitives vs Objects in practice (voir 99 pour explication)
+
+let lastName = 'Williams'
+const oldLastName = lastName
+lastName = 'Davis'
+
+const jess = {
+  firstName: 'Jess',
+  lastName: 'Williams',
+  age: 27
+}
+
+const marriedJess = jess
+marriedJess.lastName = 'Davis'
+
+console.log('before marriage:', jess)
+console.log('after marriage:', marriedJess) // on voit que le nom a changé pour les deux objets.
+// on ne peut pas changer l'un sans changer l'autre car la reference pointe
+// sur le meme objet dans le heap ce qu'on peut faire en revanche :
+
+// Copying objects
+
+const jess2 = {
+  firstName: 'Jess',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Max', 'Jacob']
+}
+
+const jess2Copy = Object.assign({}, jess2) // la method Object.assign merge 2 objets en un nouveau, l'objet crée ne sera donc pas au meme referencement que jess2
+jess2Copy.lastName = 'Davis' // mais cette method crée une shallow copy de l'objet, seule la 1ere couche est copiée et la seconde
+jess2Copy.family.push('Vic') // exemple objet dans l'objet pointera toujours sur l'objet de base
+
+console.log(jess2)
+console.log(jess2Copy)
