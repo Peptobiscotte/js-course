@@ -117,6 +117,7 @@
     "json-stable-stringify-without-jsonify": "^1.0.1",
     "json5": "^1.0.2",
     "levn": "^0.4.1",
+    "live-server": "^1.2.2",
     "locate-path": "^6.0.0",
     "lodash.merge": "^4.6.2",
     "lru-cache": "^6.0.0",
