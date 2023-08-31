@@ -446,3 +446,101 @@ const restaurant = {
 // const users = [{ name: 'Max', id: '666' }]
 // console.log(users[0]?.name ?? 'user no exist')
 // // si il n'y a rien en users[0] on ne fait rien sinon on retourne le nom
+
+// COURSE 114 Looping Objects
+
+// Property Names
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day)
+// }
+
+// const properties = Object.keys(openingHours)
+// console.log(properties) // Object.keys crée un array contenant les propriétés de l'objet
+// // on peut utiliser cet array par la suite.
+// console.log(`We are open ${properties.length} days`)
+
+// // Property Values
+
+// const values = Object.values(openingHours)
+// console.log(values)
+
+// // Entire object
+
+// const entries = Object.entries(openingHours)
+// console.log(entries)
+
+// for (const [key, { open, close }] of entries) { // on deconstruit l'array ici
+//   // console.log(x) // remarquer comment est construit l'array resultant
+//   console.log(`On ${key} we open at ${open} and close at ${close}`)
+// }
+
+// CODING CHALLENGE # 2
+
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski'
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze'
+//     ]
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+//     'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5
+//   }
+// }
+
+// // 1
+
+// for (const [i, player] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${player}`)
+// }
+
+// // 2
+// let sum = 0
+// for (const [, odd] of Object.entries(game.odds)) {
+//   sum += odd / Object.entries(game.odds).length
+// }
+// console.log(sum)
+
+// // 3
+
+// console.log(`Odd of victory ${game.team1}: ${game.odds.team1}`)
+// console.log(`Odd of draw ${game.odds.x}`)
+// console.log(`Odd of victory ${game.team2}: ${game.odds.team2}`)
+
+// // 4
+
+// const scorers = {
+
+// }
+
+// COURSE 116 SETS

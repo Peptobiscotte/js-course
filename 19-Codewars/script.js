@@ -213,3 +213,175 @@
 // const test = nbYear(1000, 2.0, 50, 1214)
 // // const test = nbYear(1000, 2.0, 50, 1214)
 // console.log(test)
+
+// function findNeedle (haystack) {
+//   const position = haystack.indexOf('needle')
+//   return `found the ${haystack[position]} at position ${position}`
+// }
+
+// // eslint-disable-next-line max-len
+// findNeedle(['3', '123124234', undefined, 'needle', 'world', 'hay', 2, '3', true, false])
+
+// function findShort (s) {
+//   const arr = s.split(' ')
+//   let shortWord = arr[0]
+//   arr.map(function (word) {
+//     if (word.length < shortWord.length) {
+//       shortWord = word
+//     }
+//     return shortWord
+//   })
+//   return shortWord.length
+// }
+
+// const test = findShort('bitcoin take over the world maybe who knows perhaps')
+// console.log(test)
+
+// function litres (time) {
+//   return Math.floor(time / 2)
+// }
+
+// function solution (str) {
+//   const splitted = str.split('')
+//     .reverse()
+//     .join('')
+//   return splitted
+// }
+
+// const test = solution('hello')
+// console.log(test)
+
+// const solution2 = (str) => str.split('').reverse().join('')
+// const test2 = solution2('hello')
+// console.log(test2)
+
+// function DNAStrand (dna) {
+//   const split = dna.split('')
+//   const reverse = split.map(function (letter) {
+//     if (letter === 'A') {
+//       letter = 'T'
+//     } else if (letter === 'T') {
+//       letter = 'A'
+//     } else if (letter === 'G') {
+//       letter = 'C'
+//     } else if (letter === 'C') {
+//       letter = 'G'
+//     }
+//     return letter
+//   })
+//   return reverse.join('')
+// }
+
+// const test = DNAStrand('ATGC')
+// console.log(test)
+
+// function paperwork (n, m) {
+//   return n < 0 || m < 0 ? 0 : n * m
+// }
+
+// const test = paperwork(5, -5)
+// console.log(test)
+
+// function accum (s) {
+//   const arr = s.split('')
+//   console.log(arr)
+// }
+
+// const test = accum('abcd')
+// console.log(test)
+
+// function solution (str, ending) {
+//   if (ending === '') {
+//     return true
+//   } else {
+//     const slicing = str.slice(-ending.length)
+//     return slicing === ending
+//   }
+// }
+
+// const test = solution('abcde', '')
+// console.log(test)
+
+// function openOrSenior (data) {
+//   const check = data.map(function (arr, i) {
+//     if (arr[0] >= 55 && arr[1] > 7) {
+//       arr = 'Senior'
+//     } else {
+//       arr = 'Open'
+//     }
+//     return arr
+//   })
+//   return check
+// }
+
+// const test = openOrSenior([[45, 12], [55, 21]])
+// console.log(test)
+
+// function findSmallestInt (args) {
+//   let smallest = args[0]
+//   args.map(function (age) {
+//     if (age < smallest) {
+//       smallest = age
+//     }
+//     return smallest
+//   })
+//   return smallest
+// }
+
+// const test = findSmallestInt([78, 56, 232, 12, 8])
+// console.log(test)
+
+// // class SmallestIntegerFinder {
+// //     findSmallestInt(args) {
+// //         let smallest = args[0]
+// //         args.map(function (age) {
+// //           if (age < smallest) {
+// //             smallest = age
+// //           }
+// //           return smallest
+// //         })
+// //         return smallest
+// //     }
+// //   }
+
+// function longest (s1, s2) {
+//   const str = [s1, s2].join('').split('').sort()
+//   return [...new Set(str)].join('')
+// }
+
+// const test = longest('aretheyhere', 'yestheyarehere')
+// console.log(test)
+
+// const rps = (p1, p2) => {
+//   if (p1 === p2) {
+//     return 'Draw!'
+//   } else if ((p1 === 'scissors' && p2 === 'paper') ||
+//   (p1 === 'paper' && p2 === 'rock') || (p1 === 'rock' && p2 === 'scissors')) {
+//     return 'Player 1 won!'
+//   } else {
+//     return 'Player 2 won!'
+//   }
+// }
+
+// const test = rps('rock', 'scissors')
+// console.log(test)
+
+function isIsogram (str) {
+  const lowerC = str.toLowerCase()
+  let testDouble = ''
+  let isTrue = true
+  lowerC.split('')
+    .map(function (letter) {
+      if (letter !== testDouble) {
+        testDouble = letter
+        console.log(testDouble)
+      } else if (letter === testDouble) {
+        isTrue = false
+      }
+      return letter
+    })
+  return isTrue
+}
+
+const test = isIsogram('abaa')
+console.log(test)
