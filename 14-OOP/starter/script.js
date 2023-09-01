@@ -660,3 +660,12 @@ car1.accelerate()
   .brake()
 console.log(car1)
 // console.log(car1.#charge)
+
+const user = {
+  name: 'alex',
+  sex: 'm'
+}
+
+for (const key in user) {
+  console.log(key)
+}
