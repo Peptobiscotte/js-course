@@ -366,22 +366,108 @@
 // const test = rps('rock', 'scissors')
 // console.log(test)
 
-function isIsogram (str) {
-  const lowerC = str.toLowerCase()
-  let testDouble = ''
-  let isTrue = true
-  lowerC.split('')
-    .map(function (letter) {
-      if (letter !== testDouble) {
-        testDouble = letter
-        console.log(testDouble)
-      } else if (letter === testDouble) {
-        isTrue = false
-      }
-      return letter
-    })
-  return isTrue
+// function isIsogram (str) {
+//   const lowerC = str.toLowerCase()
+//   let testDouble = ''
+//   let isTrue = true
+//   lowerC.split('')
+//     .map(function (letter) {
+//       if (letter !== testDouble) {
+//         testDouble = letter
+//         console.log(testDouble)
+//       } else if (letter === testDouble) {
+//         isTrue = false
+//       }
+//       return letter
+//     })
+//   return isTrue
+// }
+
+// const test = isIsogram('abaa')
+// console.log(test)
+
+// function basicOp (operation, value1, value2) {
+//   switch (operation) {
+//     case '+': return value1 + value2
+//     case '-': return value1 - value2
+//     case '*': return value1 * value2
+//     case '/': return value1 / value2
+//   }
+// }
+
+// const test = basicOp('+', 4, 7)
+// console.log(test)
+
+// const binaryArrayToNumber = arr => {
+//   return arr.reverse()
+//     .map((bit, i) => Math.pow(2, i) * bit)
+//     .reduce((acc, value) => acc + value, 0)
+// }
+
+// const test = binaryArrayToNumber([1, 1, 1, 1, 0, 1, 1, 0])
+// console.log(test)
+
+// function bmi (weight, height) {
+//   const bmi2 = weight / height ** 2
+//   if (bmi2 <= 18.5) {
+//     return 'Underweight'
+//   } else if (bmi2 <= 25.0) {
+//     return 'Normal'
+//   } else if (bmi2 <= 30) {
+//     return 'Overweight'
+//   } else if (bmi2 > 30) {
+//     return 'Obese'
+//   }
+// }
+
+// const test = bmi(80, 1.80)
+// console.log(test)
+
+// const booleanToString = (b) => String(b)
+
+// const opposite = (number) => -number
+
+// function towerBuilder (nFloors) {
+//   const arr = []
+//   const star = '*'
+//   for (let i = 0; i < nFloors; i++) {
+//     arr.push(star.repeat((i * 2) + 1))
+//   }
+//   console.log(arr)
+// //   const lastArrLength = arr.slice(-1).join('').length
+// //   const padded = arr.map(function (str) {
+// //     str.padStart(lastArrLength / 2).padEnd(lastArrLength / 2)
+// //     return str
+// //   })
+// //   console.log(padded)
+// }
+// const test = towerBuilder(3)
+// console.log(test)
+
+// const findAverage = (array) => array.length === 0
+//   ? 0
+//   : array.reduce((acc, value) => acc + value, 0) /
+// array.length
+
+// const test = findAverage([])
+// console.log(test)
+
+function isValidWalk (walk) {
+  const reverse = {
+    n: 's',
+    s: 'n',
+    e: 'w',
+    w: 'e'
+  }
+
+  if (walk.length === 10) {
+    const part2 = walk.splice(5, 9)
+    const part1 = walk.splice(0, 5)
+    console.log(part1, part2)
+  }
 }
 
-const test = isIsogram('abaa')
+const test = isValidWalk(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
 console.log(test)
+
+// continuer demain.

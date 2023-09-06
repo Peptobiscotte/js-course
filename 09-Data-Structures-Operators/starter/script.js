@@ -1,9 +1,8 @@
 'use strict'
 
 // Data needed for a later exercise
-const flights =
-  // eslint-disable-next-line max-len
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30'
+
+// eslint-disable-next-line max-len
 
 // Data needed for first part of the section
 
@@ -856,27 +855,52 @@ const restaurant = {
 
 // CODING CHALLENGE #4
 
-document.body.append(document.createElement('textarea'))
-document.body.append(document.createElement('button'))
+// document.body.append(document.createElement('textarea'))
+// document.body.append(document.createElement('button'))
 
-// const convert = function (string) {
-//   const low = string.toLowerCase()
-//   const trimmed = low.trim()
-//   const maj = trimmed.split('_')
-//   const secondUpp = maj[0] + maj[1][0].toUpperCase() + maj[1].slice(1)
-//   return secondUpp
+// // const convert = function (string) {
+// //   const low = string.toLowerCase()
+// //   const trimmed = low.trim()
+// //   const maj = trimmed.split('_')
+// //   const secondUpp = maj[0] + maj[1][0].toUpperCase() + maj[1].slice(1)
+// //   return secondUpp
+// // }
+
+// // const test = convert('Some_Variable')
+// // console.log(test)
+// const buttonElement = document.querySelector('button')
+// // eslint-disable-next-line max-len
+// const textElement = document.querySelector('textarea')
+
+// const convert2 = function (string) {
+//   const low = string.toLowerCase().trim().split('_') // crée un array avec les deux mots
+//   const secondUpp = low[0] + low[1][0].toUpperCase() + low[1].slice(1) // recrée une string contenant l'array en pos 1 et l'array en pos2 avec une maj
+//   console.log(`${secondUpp.padEnd(20, ' ')}${'✅'.repeat(2)}`)
 // }
 
-// const test = convert('Some_Variable')
-// console.log(test)
+// // const test2 = convert2(' first_name ')
+// // console.log(test2)
 
-const convert2 = function (string) {
-  const low = string.toLowerCase().trim().split('_') // crée un array avec les deux mots
-  const secondUpp = low[0] + low[1][0].toUpperCase() + low[1].slice(1) // recrée une string contenant l'array en pos 1 et l'array en pos2 avec une maj
-  return secondUpp
-}
+// buttonElement.addEventListener('click', function () {
+//   textElement.value.split('\n')
+//     .map((text, i) => convert2(text))
+// })
 
-const test2 = convert2('Some_Variable')
-console.log(test2)
+// // const multiL = function (strings) {
+// //   return strings.split('\n')
+// // }
 
-// a finir
+// // console.log(multiL('hello \n bonjour'))
+
+// COURSE 125 String Methods practice
+
+// eslint-disable-next-line max-len
+// const flights = '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30'
+// const splittedArr = flights.split('+')
+
+// for (const flight of splittedArr) {
+//   const [type, from, to, time] = flight.split(';')
+//   // eslint-disable-next-line max-len
+//   const output = `${type.replaceAll('_', ' ').slice(1)} from ${from.slice(0, from.search(/\d/)).toUpperCase()} to ${to.slice(0, to.search(/\d/)).toUpperCase()} (${time.replace(':', 'h')})`
+//   console.log(output)
+// }
