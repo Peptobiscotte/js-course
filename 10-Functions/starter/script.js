@@ -244,3 +244,26 @@
 //   .addEventListener('click', poll.registerNewAnswer.bind(poll))
 
 // poll.displayResults('1, 5, 3, 9, 6, 1')
+
+// COURSE 136 invoked functions expressions
+
+// const runOnce = ((function () {
+//   console.log('this wil never run again')
+// }
+
+// COURSE 137 Closure
+
+// const secureBooking = function () {
+//   let passengerCount = 0
+
+//   return function () {
+//     passengerCount++
+//     console.log(`${passengerCount} passengers`)
+//   }
+// }
+
+// const booker = secureBooking()
+
+// booker()
+// booker()
+// booker()

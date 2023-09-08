@@ -61,10 +61,10 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount')
 const inputCloseUsername = document.querySelector('.form__input--user')
 const inputClosePin = document.querySelector('.form__input--pin')
 
-const displayMovements = function (movements) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = '' // cette ligne permet de vider le html avant
   // de rentrer nos données.
-  movements.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
     const html = `
     <div class="movements">
@@ -87,8 +87,6 @@ const displayMovements = function (movements) {
     // la string html que l'on veut insérer (ici la const html qu'on a créé.)
   })
 }
-
-displayMovements(account1.movements)
 
 // COURSE 151 Computing usernames
 
@@ -117,31 +115,29 @@ createUsernames(accounts)
 // mais le mieux serait de chain les methods sans redéclarer de variable
 // a chaque fois.
 
-const calcPrintBalance = function (movements) { // prend un array de movements.
-  const balance = movements.reduce((acc, mov) => acc + mov, 0)
-  labelBalance.textContent = `${balance} €` //
+const calcPrintBalance = function (acc) { // prend un array de movements.
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0)
+  labelBalance.textContent = `${acc.balance} €` //
 }
-calcPrintBalance(account1.movements) // on utilise l'array de mov stocké dans l'objet acc1
+// on utilise l'array de mov stocké dans l'objet acc1
 
-const calcDisplaySummary = function (movements) { // on veut calculer les incomes outcomes et interest (bas de la page)
-  const incomes = movements
+const calcDisplaySummary = function (acc) { // on veut calculer les incomes outcomes et interest (bas de la page)
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0)
   labelSumIn.textContent = `${incomes}€` // on va ensuite inspecter l'element html de la page à l'ndroit ou on veut inserer ce calcul(ici le query selector a été fait en amont)
 
-  const outcomes = movements
+  const outcomes = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0)
   labelSumOut.textContent = `${Math.abs(outcomes)}€` // Math.abs donne l'absolute value (pas de - ou de +)
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => (mov * 1.2 / 100) >= 1 ? mov * 1.2 / 100 : 0) // calcule un interet de 1.2% mais exclut les interets inferieur a 1$ on aurait aussi pu rajouter une filter method
+    .map(mov => (mov * 1.2 / 100) >= 1 ? mov * acc.interestRate / 100 : 0) // calcule un interet de 1.2% mais exclut les interets inferieur a 1$ on aurait aussi pu rajouter une filter method
     .reduce((acc, mov) => acc + mov, 0)
   labelSumInterest.textContent = `${interest}€`
 }
-
-calcDisplaySummary(account1.movements)
 
 // // Event handler
 // btnLogin.addEventListener('click', function (e) {
@@ -150,6 +146,65 @@ calcDisplaySummary(account1.movements)
 
 //   accounts.find(acc => acc.owner === inputLoginUsername.value)
 // })
+
+// UPDATE UI
+
+const updateUI = function (acc) {
+  displayMovements(acc)
+
+  calcPrintBalance(acc)
+
+  calcDisplaySummary(acc)
+}
+
+// ✅ Event handlers ✅
+let currentAccount =
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault() // on utilise ça dans les form HTML car elles reload la page sinon
+
+  currentAccount = accounts.find(acc => acc.username ===
+     inputLoginUsername.value)
+  console.log(currentAccount)
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) { // optionnal chaining with the ?, if currentAccount is undefined it will just not read the code after
+    // Display UI and message
+    labelWelcome.textContent =
+    `Welcome back ${currentAccount.owner.split(' ')[0]}`
+    containerApp.style.opacity = 100
+
+    // Clearing input fields
+    inputLoginUsername.value = inputLoginPin.value = ''
+    inputLoginPin.blur()
+    inputLoginUsername.blur() // enleve le curseur de selection de la boite
+
+    updateUI(currentAccount)
+  }
+})
+
+// 📈 Transfer Money 📈
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault()
+  const amount = Number(inputTransferAmount.value)
+  const receiverAcc =
+  accounts.find(acc => acc.username === inputTransferTo.value)
+
+  // clear input fields
+  inputTransferAmount.value = inputTransferTo.value = ''
+  inputTransferAmount.blur()
+
+  if (amount > 0 &&
+    receiverAcc &&
+  amount <= currentAccount.balance &&
+  receiverAcc?.username !== currentAccount.username) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount)
+    receiverAcc.movements.push(amount)
+    // update ui
+    updateUI(currentAccount)
+  }
+})
 
 /// //////////////////////////////////////////////
 /// //////////////////////////////////////////////
@@ -370,7 +425,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 //   }
 // }
 
-// COURSE 158 Implementing login ⚠️⚠️⚠️ reprendre plus tard
+// COURSE 158 Implementing login
 
 // COURSE 159 ⚠️⚠️⚠️
 

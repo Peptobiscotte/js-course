@@ -452,22 +452,84 @@
 // const test = findAverage([])
 // console.log(test)
 
-function isValidWalk (walk) {
-  const reverse = {
-    n: 's',
-    s: 'n',
-    e: 'w',
-    w: 'e'
-  }
+// function isValidWalk (walk) {
+//   let part1 = []
+//   let part2 = []
 
-  if (walk.length === 10) {
-    const part2 = walk.splice(5, 9)
-    const part1 = walk.splice(0, 5)
-    console.log(part1, part2)
-  }
-}
+//   const reverse = {
+//     n: 's',
+//     s: 'n',
+//     e: 'w',
+//     w: 'e'
+//   }
 
-const test = isValidWalk(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
-console.log(test)
+//   if (walk.length === 10) {
+//     part2 = walk.splice(5, 9)
+//     part1 = walk.splice(0, 5)
+//   } else {
+//     return false
+//   }
+//   const part2rev = part2.reverse()
 
-// continuer demain.
+//   const part2transformed = part2rev.map(function (value) {
+//     return reverse[value]
+//   })
+
+//   for (let i = 0; i < part1.length; i++) {
+//     if (part1[i] !== part2transformed[i]) {
+//       return false
+//     }
+//   }
+//   return true
+// }
+
+// function isValidWalk (walk) {
+//   const walkObj = {
+//     n: 0,
+//     s: 0,
+//     e: 0,
+//     w: 0
+//   }
+
+//   if (walk.length !== 10) {
+//     return false
+//   } else {
+//     walk.forEach(value => walkObj[value]++)
+//   }
+//   if (walkObj.n === walkObj.s && walkObj.e === walkObj.w) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+// // const part2transformed = part2.map(function (value) {
+// //   return reverse[value]
+// // })
+
+// // const compte1 = {}
+// // part1.forEach(function (value) {
+// //   if (!compte1[value]) {
+// //     compte1[value] = 1
+// //   } else {
+// //     compte1[value]++
+// //   }
+// // })
+// // const compte2 = {}
+// // part2transformed.forEach(function (value) {
+// //   if (!compte2[value]) {
+// //     compte2[value] = 1
+// //   } else {
+// //     compte2[value]++
+// //   }
+// // })
+// // console.log(compte1, compte2)
+
+// // if (compte1.n === compte2.n && compte1.s === compte2.s &&
+// //     compte1.w === compte2.w && compte1.e === compte2.e) {
+// //   return true
+// // } else {
+// //   return false
+// // }
+
+// const test = isValidWalk(['n', 'e', 'n', 'w', 'n', 's', 's', 's', 's', 'n'])
+// console.log(test)
