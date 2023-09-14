@@ -61,10 +61,15 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount')
 const inputCloseUsername = document.querySelector('.form__input--user')
 const inputClosePin = document.querySelector('.form__input--pin')
 
-const displayMovements = function (acc) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '' // cette ligne permet de vider le html avant
   // de rentrer nos données.
-  acc.movements.forEach(function (mov, i) {
+
+  // sorting
+  // eslint-disable-next-line max-len
+  const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
     const html = `
     <div class="movements">
@@ -182,6 +187,38 @@ btnLogin.addEventListener('click', function (e) {
   }
 })
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault()
+
+  const amount = Number(inputLoanAmount.value)
+
+  if (amount > 0 && currentAccount.movements
+    .some(mov => mov >= amount * 0.1)) {
+    currentAccount.movements.push(amount)
+    // update UI
+    updateUI(currentAccount)
+  }
+  inputLoanAmount.value = ''
+})
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault()
+
+  if (inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin) {
+    const index = accounts.findIndex(acc => acc.username ===
+        currentAccount.username)
+
+    // Delete account
+    accounts.splice(index, 1)
+
+    // Hide UI
+    containerApp.style.opacity = 0
+  }
+  // clear input
+  inputClosePin.value = inputCloseUsername.value = ''
+})
+
 // 📈 Transfer Money 📈
 
 btnTransfer.addEventListener('click', function (e) {
@@ -204,6 +241,16 @@ btnTransfer.addEventListener('click', function (e) {
     // update ui
     updateUI(currentAccount)
   }
+})
+
+// SORT
+
+let sorted = false
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault()
+  displayMovements(currentAccount, !sorted)
+  sorted = !sorted
 })
 
 /// //////////////////////////////////////////////
@@ -430,3 +477,228 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 // COURSE 159 ⚠️⚠️⚠️
 
 // COURSE 160 findIndex method
+
+// fermer un account revient a delet l'objet de l'array account
+
+// COURSE 161 some and every
+
+// console.log(movements)
+// console.log(movements.includes(-130)) // includes teste uniquement l'égalite =
+// // pour tester une condition on utilise some
+
+// const anyDeposits = movements.some(mov => mov > 1500) // teste si il y a au moins une valeur
+// // supérieure à 0 (deposit) (any value)
+// console.log(anyDeposits)
+
+// every
+
+// only returns true when all elements pass the test.
+
+// console.log(movements.every(mov => mov > 0)) // returns true si tous les movements sont
+// // des déposits (>0)
+// console.log(account4.movements.every(mov => mov > 0)) // l'acc 4 a que des depo
+
+// // separate callback
+
+// const deposit = mov => mov > 0
+
+// console.log(movements.some(deposit))
+// console.log(movements.every(deposit))
+// console.log(movements.filter(deposit))
+
+// COURSE 162 flat and flatmap
+
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8]
+// console.log(arr.flat())
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8]
+// console.log(arrDeep.flat()) // removes only one level of nest
+// console.log(arrDeep.flat(2)) // removes 2 levels of nest
+
+// // on veut connaitre les movements de tous les comptes et la balance totale:
+
+// const accountMovements = accounts.map(acc => acc.movements)
+// console.log(accountMovements) // on a un array avec tous les movements nested
+
+// const allMovements = accountMovements.flat()
+// console.log(allMovements)
+
+// const overallBalance = allMovements.reduce((acc, value) => acc + value, 0)
+// console.log(overallBalance)
+
+// // on aurait pu chain les methods plutot que de réutiliser differrentes const
+// // comme ça arrive souvent de map puis de flat il y a une method qui fait les 2
+// // Flatmap
+
+// const overallBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, value) => acc + value, 0)
+
+// console.log(overallBalance2)
+
+// // mais cette method ne fonctionne que sur un level de nesting si il y en a plus il faut
+// // utiliser .flat et .map separemment
+
+// COURSE 163 sorting arrays
+
+// COURSE 164 ways of creating arrays
+
+// const arr = [1, 2, 3, 4, 5, 6, 7]
+// // console.log(new Array(1, 2, 3, 4, 5))
+
+// const x = new Array(7)
+// console.log(x) // crée un array avec 7 elements vides si on donne un seul argument
+// // avec cette methode on ne peut pas utiliser la methode map par ex
+// // mais on peut  utiliser la methode fill
+
+// // x.fill(1)
+// // console.log(x) // remplit l'array de l'argument et modifie l'array (pas besoin de store un nouvel array)
+
+// x.fill(1, 3, 5) // on peut spécifier en second un parametre de depart, ici on commence a remplir
+// // l'array de 1 a partir de la position 3 (le 4eme slot) et un 3eme parametre pour spécifier
+// // ou doit s'arreter le remplissage
+// console.log(x)
+
+// arr.fill(23, 2, 6)
+// console.log(arr) // fonctionne aussi sur les arrays qui ne sont pas vides.
+
+// // Array from
+// const y = Array.from({ length: 7 }, () => 1)
+// console.log(y)
+
+// const z = Array.from({ length: 7 }, (_, i) => i + 1) // fonctionne comme une callback
+// // function .map par exemple. on spécifie d'abord la longueur sous forme de key d'un objet
+// // puis la callback function pour remplir l'array.
+// // on a uniquement besoin de l'index (i) ici mais on doit spécifier un premier argument quand meme
+// // donc on utilise _ pour dire que l'argument n'est pas utilisé dans la fonction.
+// console.log(z)
+
+// const dice = Array.from({ length: 100 }, () =>
+//   Math.trunc(Math.random() * 6) + 1)
+// console.log(dice)
+
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI = Array.from(document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('€', '')))
+//   console.log(movementsUI)
+// })
+// on voit ici qu'en premier arg de array.from on peut spécifier une origine complexe comme un
+// query selectorAll, et en second arg on passe une fonction qui nous permet d'extraire les data
+// que l'on veut obtenir (ici un nombre, sans le symbole €)
+// on l'a attaché à un event handler pour pouvoir justifier son utilisation dans l'exemple
+
+// COURSE 165 which method to use
+// ✅✅✅✅✅✅✅✅✅✅✅ revoir la vidéo pour + d'infos
+
+// COURSE 166 Practice
+
+// on veut le sum des deposits de la banque
+// const bankDepositSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((acc, mov) => acc + mov, 0)
+
+// console.log(bankDepositSum)
+
+// // on veut le nombre de deposit d'au moins 1000
+// // const numDeposit1000 = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .filter(mov => mov >= 1000).length
+
+// const numDeposit1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((count, current) => current >= 1000 ? count + 1 : count, 0)
+// // on peut utiliser reduce a la place
+// console.log(numDeposit1000)
+
+// // let a = 10
+// // console.log(a++) // le ++ augmente la value mais return la value avant augmentation
+// // console.log(a)
+// // console.log(++a) // si on met ++ avant ça renvoie direct la valeur augmentée
+
+// // créer un objet contenant tous les deposits et tous les withdrawals
+// const sums = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((sums, cur) => {
+//     cur > 0 ? sums.deposits += cur : sums.withdrawals += cur
+//     return sums
+//   }, { deposits: 0, withdrawals: 0 })
+
+// console.log(sums)
+
+// // convertir n'importe quelle string en Title Case (première lettre en maj sauf exceptions
+// const convertTitle = function (title) {
+//   const capitalize = str => str[0].toUpperCase() + str.slice(1)
+
+//   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with']
+
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     .map(word => exceptions.includes(word)
+//       ? word
+//       : capitalize(word))
+//     .join(' ')
+//   return capitalize(titleCase)
+// }
+
+// console.log(convertTitle('this is a nice title'))
+// console.log(convertTitle('this is a LONG title but not too long'))
+// console.log(convertTitle('and here is another title with an EXAMPLE'))
+
+// CODING CHALLENGE #4
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+]
+
+// 1
+
+const reco = function (dogObj) {
+  dogObj.recommendedFood = dogObj.weight ** 0.75 * 28
+}
+
+dogs.forEach(reco)
+console.log(dogs)
+
+// 2
+const indexSarahDog = dogs.findIndex(dog =>
+  dog.owners.includes('Sarah'))
+
+if (dogs[indexSarahDog].curFood > (dogs[indexSarahDog].recommendedFood)) {
+  console.log(`${dogs[indexSarahDog].owners}'s dog is eating too much`)
+  // eslint-disable-next-line max-len
+} else if (dogs[indexSarahDog].curFood > (dogs[indexSarahDog].recommendedFood)) {
+  console.log((`${dogs[indexSarahDog].owners}'s dog is eating too little`))
+}
+
+// 3
+const keyFind = 'owners'
+
+const tooMuch = dogs
+  .filter(el => el.curFood > el.recommendedFood)
+  .flatMap(obj => obj[keyFind])
+
+const tooLittle = dogs
+  .filter(el => el.curFood < el.recommendedFood)
+  .flatMap(obj => obj[keyFind])
+
+// 4
+
+console.log(`${tooMuch.join(' and ')}'s dogs eat too much`)
+
+console.log(`${tooLittle.join(' and ')}'s dogs eat too little`)
+
+// 5
+
+dogs.forEach(function (elem) {
+  console.log(elem.curFood === elem.recommendedFood)
+})
+
+dogs.forEach(function (elem) {
+  // eslint-disable-next-line max-len
+  console.log(elem.curFood > (elem.recommendedFood * 0.90) && elem.curFood < (elem.recommendedFood * 1.10))
+})
