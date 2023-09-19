@@ -533,3 +533,15 @@
 
 // const test = isValidWalk(['n', 'e', 'n', 'w', 'n', 's', 's', 's', 's', 'n'])
 // console.log(test)
+
+function duplicateEncode (word) {
+  const setWord = new Set(word.split(''))
+  return setWord
+
+//   return word.split('').map(function (letter) {
+//     return letter.replace(letter, '(')
+//   })
+}
+
+const test = duplicateEncode('dini')
+console.log(test)
