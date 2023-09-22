@@ -534,14 +534,25 @@
 // const test = isValidWalk(['n', 'e', 'n', 'w', 'n', 's', 's', 's', 's', 'n'])
 // console.log(test)
 
-function duplicateEncode (word) {
-  const setWord = new Set(word.split(''))
-  return setWord
+// function duplicateEncode (word) {
+//   const setWord = new Set(word.split(''))
+//   return setWord
 
-//   return word.split('').map(function (letter) {
-//     return letter.replace(letter, '(')
-//   })
+// //   return word.split('').map(function (letter) {
+// //     return letter.replace(letter, '(')
+// //   })
+// }
+
+// const test = duplicateEncode('dini')
+// console.log(test)
+
+// function filterList (l) {
+//   return l.filter(value => typeof value === 'number')
+// }
+
+function squareDigits (num) {
+  return +num.toString().split('').map(n => n ** 2).join('')
 }
 
-const test = duplicateEncode('dini')
+const test = squareDigits(3212)
 console.log(test)
