@@ -616,56 +616,56 @@
 
 // Coding challenge # 4
 
-class CarCl {
-  constructor (make, speed) {
-    this.make = make
-    this.speed = speed
-  }
+// class CarCl {
+//   constructor (make, speed) {
+//     this.make = make
+//     this.speed = speed
+//   }
 
-  accelerate () {
-    this.speed += 10
-  }
+//   accelerate () {
+//     this.speed += 10
+//   }
 
-  brake () {
-    this.speed -= 5
-    return this
-  }
-}
+//   brake () {
+//     this.speed -= 5
+//     return this
+//   }
+// }
 
-class EVCl extends CarCl {
-  #charge
-  constructor (make, speed, charge) {
-    super(make, speed)
-    this.#charge = charge
-  }
+// class EVCl extends CarCl {
+//   #charge
+//   constructor (make, speed, charge) {
+//     super(make, speed)
+//     this.#charge = charge
+//   }
 
-  accelerate () {
-    this.speed += 20
-    this.#charge -= 1
-    return this
-  }
+//   accelerate () {
+//     this.speed += 20
+//     this.#charge -= 1
+//     return this
+//   }
 
-  chargeBattery (chargeTo) {
-    this.#charge = chargeTo
-    return this
-  }
-}
+//   chargeBattery (chargeTo) {
+//     this.#charge = chargeTo
+//     return this
+//   }
+// }
 
-const car1 = new EVCl('Tesla', 120, 23)
-console.log(car1)
-car1.accelerate()
-  .accelerate()
-  .accelerate()
-  .chargeBattery(90)
-  .brake()
-console.log(car1)
-// console.log(car1.#charge)
+// const car1 = new EVCl('Tesla', 120, 23)
+// console.log(car1)
+// car1.accelerate()
+//   .accelerate()
+//   .accelerate()
+//   .chargeBattery(90)
+//   .brake()
+// console.log(car1)
+// // console.log(car1.#charge)
 
-const user = {
-  name: 'alex',
-  sex: 'm'
-}
+// const user = {
+//   name: 'alex',
+//   sex: 'm'
+// }
 
-for (const key in user) {
-  console.log(key)
-}
+// for (const key in user) {
+//   console.log(key)
+// }

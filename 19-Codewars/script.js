@@ -550,9 +550,34 @@
 //   return l.filter(value => typeof value === 'number')
 // }
 
-function squareDigits (num) {
-  return +num.toString().split('').map(n => n ** 2).join('')
+// function squareDigits (num) {
+//   return +num.toString().split('').map(n => n ** 2).join('')
+// }
+
+// const test = squareDigits(3212)
+// console.log(test)
+
+// const boolToWord = (bool) => bool ? 'Yes' : 'No'
+
+// const test = boolToWord(false)
+// console.log(test)
+
+function findOdd (A) {
+  const compte = {}
+  A.forEach(n => {
+    if (compte[n]) {
+      compte[n]++
+    } else {
+      compte[n] = 1
+    }
+  })
+  const key = Object.entries(compte)
+  let odd
+  key.forEach(function (value) {
+    if ((value[1]) % 2 === 1) { odd = Number(value[0]) }
+  })
+  return odd
 }
 
-const test = squareDigits(3212)
+const test = findOdd([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1])
 console.log(test)
