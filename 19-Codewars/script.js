@@ -562,22 +562,29 @@
 // const test = boolToWord(false)
 // console.log(test)
 
-function findOdd (A) {
-  const compte = {}
-  A.forEach(n => {
-    if (compte[n]) {
-      compte[n]++
-    } else {
-      compte[n] = 1
-    }
-  })
-  const key = Object.entries(compte)
-  let odd
-  key.forEach(function (value) {
-    if ((value[1]) % 2 === 1) { odd = Number(value[0]) }
-  })
-  return odd
-}
+// function findOdd (A) {
+//   const compte = {}
+//   A.forEach(n => {
+//     if (compte[n]) {
+//       compte[n]++
+//     } else {
+//       compte[n] = 1
+//     }
+//   })
+//   const key = Object.entries(compte)
+//   let odd
+//   key.forEach(function (value) {
+//     if ((value[1]) % 2 === 1) { odd = Number(value[0]) }
+//   })
+//   return odd
+// }
 
-const test = findOdd([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1])
-console.log(test)
+// const test = findOdd([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1])
+// console.log(test)
+
+// function reverseWords (str) {
+//   return str.split(' ').map(word => word.split('').reverse().join('')).join(' ')
+// }
+
+// const test = reverseWords('apple pear')
+// console.log(test)
