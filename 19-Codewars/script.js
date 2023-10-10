@@ -588,3 +588,25 @@
 
 // const test = reverseWords('apple pear')
 // console.log(test)
+
+// function smash (words) {
+//   return words.join(' ')
+// }
+
+// const test = smash(['hello', 'world'])
+// console.log(test)
+
+// function sumTwoSmallestNumbers (numbers) {
+//   return numbers.sort((a, b) => a - b)
+//     .slice(0, 2)
+//     .reduce((acc, x) => acc + x, 0)
+// }
+
+function solution (string) {
+  const upp = string.match(/[A-Z]/g)
+  console.log(upp[0])
+  return string.split('C')
+}
+
+const test = solution('camelCasingTrue')
+console.log(test)
